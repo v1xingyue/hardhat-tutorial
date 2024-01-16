@@ -123,5 +123,39 @@ describe("Lock", function () {
         );
       });
     });
+
+    describe("Hello", () => {
+      it("Should say hello", async () => {
+        const { lock } = await loadFixture(deployOneYearLockFixture);
+        expect(await lock.hello()).to.equal("Hello World");
+      });
+    });
+
+    describe("script", () => {
+      it("value checking", async () => {
+        const v = 123456;
+        const { lock } = await loadFixture(deployOneYearLockFixture);
+        await lock.setValue(v);
+        expect(await lock.value()).to.equal(v);
+      });
+      it("string checking", async () => {
+        const v = "hello world";
+        const { lock } = await loadFixture(deployOneYearLockFixture);
+        await lock.setScriptContent(v);
+        expect(await lock.scriptContent()).to.equal(v);
+      });
+
+      it("long text", async () => {
+        const v = `
+          console.log("hello world");
+          window.web3 = {
+            pub_time: 123456,    
+          }
+        `;
+        const { lock } = await loadFixture(deployOneYearLockFixture);
+        await lock.setScriptContent(v);
+        expect(await lock.scriptContent()).to.equal(v);
+      });
+    });
   });
 });

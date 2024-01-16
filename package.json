@@ -4,9 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "generateAccount": "pnpm hardhat run scripts/generateAccount.ts",
-    "compile": "pnpm hardhat compile",
-    "deploy": "pnpm hardhat compile"
+    "newAccount": "hardhat run scripts/generateAccount.ts",
+    "compile": "hardhat compile",
+    "deploy": "hardhat run --network mumbai scripts/deploy.ts",
+    "hello": "hardhat run --network mumbai scripts/operate.ts",
+    "test": "hardhat test"
   },
   "keywords": [],
   "author": "",

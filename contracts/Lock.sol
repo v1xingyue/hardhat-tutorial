@@ -7,6 +7,10 @@ pragma solidity ^0.8.9;
 contract Lock {
     uint public unlockTime;
     address payable public owner;
+    uint public value;
+    string public scriptContent;
+    bytes32 public constant resolveMode = "manual";
+    mapping(bytes => string) public uriContents;
 
     event Withdrawal(uint amount, uint when);
 
@@ -34,5 +38,46 @@ contract Lock {
 
     function hello() public pure returns (string memory) {
         return "Hello World";
+    }
+
+    function setScriptContent(string memory _scriptContent) public {
+        scriptContent = _scriptContent;
+    }
+
+    function setValue(uint _value) public {
+        value = _value;
+    }
+
+    // function resolveMode() public pure returns (bytes32) {
+    //     return "manual";
+    // }
+
+    function combineMessage(
+        bytes calldata pathinfo,
+        string memory myString
+    ) public pure returns (string memory) {
+        return string(abi.encodePacked(pathinfo, myString));
+    }
+
+    function setMapping(bytes calldata pathinfo, string memory content) public {
+        uriContents[pathinfo] = content;
+    }
+
+    fallback(bytes calldata pathinfo) external returns (bytes memory) {
+        if (keccak256(pathinfo) == keccak256(abi.encodePacked("/hello.js"))) {
+            return abi.encode(scriptContent);
+        }
+
+        if (bytes(uriContents[pathinfo]).length != 0) {
+            return abi.encode(uriContents[pathinfo]);
+        }
+
+        return
+            abi.encode(
+                combineMessage(
+                    pathinfo,
+                    " added by 0x427fb105d12A7879F784079B2612F881318839a8 "
+                )
+            );
     }
 }

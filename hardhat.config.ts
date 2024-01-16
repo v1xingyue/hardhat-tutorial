@@ -6,7 +6,8 @@ const config: HardhatUserConfig = {
   solidity: "0.8.19",
   networks: {
     mumbai: {
-      url: `https://polygon-mumbai.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
+      // url: `https://polygon-mumbai.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
+      url: "https://rpc-mumbai.maticvigil.com/",
       accounts: [`0x${process.env.PRIVATE_KEY}`],
     },
   },

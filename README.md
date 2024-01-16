@@ -9,7 +9,7 @@ pnpm hardhat help
 pnpm hardhat test
 REPORT_GAS=true npx hardhat test
 pnpm hardhat node
-pnpm hardhat run --network=mumbai scripts/deploy.ts
+pnpm hardhat run --network mumbai scripts/deploy.ts
 pnpm hardhat run scripts/generateAccount.ts
 
 ```
