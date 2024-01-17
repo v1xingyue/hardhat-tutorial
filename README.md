@@ -20,3 +20,33 @@ Example .env
 PRIVATE_KEY=
 ALCHEMY_API_KEY=
 ```
+
+
+Use this tool deploy one web3 site : 
+
+1. compile contract
+
+```shell
+pnpm run compile 
+```
+
+2. deploy your contract, you will get the contract address, remember that
+
+```shell
+pnpm run deploy
+```
+
+3. build site pages
+
+```shell
+cd vite-project 
+pnpm run build 
+```
+
+3.  upload file content to your contract. 
+
+```shell
+pnpm run deploy-site
+```
+
+You need also modify deploy-site.ts .

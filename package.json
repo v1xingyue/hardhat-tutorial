@@ -7,7 +7,7 @@
     "newAccount": "hardhat run scripts/generateAccount.ts",
     "compile": "hardhat compile",
     "deploy": "hardhat run --network mumbai scripts/deploy.ts",
-    "hello": "hardhat run --network mumbai scripts/operate.ts",
+    "deploy-site": "hardhat run --network mumbai scripts/deploy-site.ts",
     "test": "hardhat test"
   },
   "keywords": [],

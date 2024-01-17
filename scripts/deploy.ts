@@ -53,37 +53,10 @@ async function main() {
       `web3 url is : https://${lock.target}.80001.w3link.io/scriptContent`
     );
 
-    function traverseDirectory(directoryPath: string) {
-      fs.readdir(directoryPath, (err, files) => {
-        if (err) {
-          console.error("Error reading directory:", err);
-          return;
-        }
-
-        files.forEach((file) => {
-          const fullPath = path.join(directoryPath, file);
-          fs.stat(fullPath, async (err, stats) => {
-            if (err) {
-              console.error("Error getting file stats:", err);
-              return;
-            }
-
-            if (stats.isDirectory()) {
-              console.log(`Directory: ${fullPath}`);
-              traverseDirectory(fullPath); // 递归遍历子目录
-            } else if (stats.isFile()) {
-              const uri = fullPath.replace(directoryPath, "");
-
-              console.log(`write File: ${fullPath}  to ${uri} `);
-              const data = fs.readFileSync(fullPath, "binary");
-              await lock.setMapping(uri, data);
-            }
-          });
-        });
-      });
-    }
-
-    traverseDirectory("vite-project/dist");
+    await lock.setMapping(
+      ethers.toUtf8Bytes("/"),
+      `<script>location.href="/index.html";</script>`
+    );
   } else {
     console.log("Insufficient funds");
   }
