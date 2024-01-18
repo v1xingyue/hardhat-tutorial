@@ -8,7 +8,8 @@
     "compile": "hardhat compile",
     "deploy": "hardhat run --network mumbai scripts/deploy.ts",
     "deploy-site": "hardhat run --network mumbai scripts/deploy-site.ts",
-    "test": "hardhat test"
+    "test": "hardhat test",
+    "page": "hardhat run --network mumbai scripts/page.ts"
   },
   "keywords": [],
   "author": "",
