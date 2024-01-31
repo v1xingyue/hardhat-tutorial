@@ -6,10 +6,12 @@
   "scripts": {
     "newAccount": "hardhat run scripts/generateAccount.ts",
     "compile": "hardhat compile",
-    "deploy": "hardhat run --network mumbai scripts/deploy.ts",
-    "deploy-site": "hardhat run --network mumbai scripts/deploy-site.ts",
+    "deploy": "hardhat run --network galileo scripts/deploy.ts",
+    "deploy-site": "hardhat run --network galileo scripts/deploy-site.ts",
     "test": "hardhat test",
-    "page": "hardhat run --network mumbai scripts/page.ts"
+    "page": "hardhat run --network galileo scripts/page.ts",
+    "gzip": "hardhat run --network galileo scripts/gzip.ts",
+    "tt": "hardhat run --network galileo scripts/tt.ts"
   },
   "keywords": [],
   "author": "",
@@ -34,5 +36,9 @@
     "ts-node": "^10.9.2",
     "typechain": "^8.3.0",
     "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "ethfs-uploader": "^1.2.0",
+    "express": "^4.18.2"
   }
 }

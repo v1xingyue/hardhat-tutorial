@@ -7,7 +7,7 @@ import path from "path";
 
 const main = async () => {
   const deployPath = "vite-project/dist";
-  const address = "0x34dbec66dec55585cb9c68774052f12bc9887bad";
+  const address = "0x6eC3512a2A37f068797764A843B27017693035a1";
   const [deployer] = await ethers.getSigners();
   console.log("Using account:", deployer.address);
   const Contract = await ethers.getContractFactory("Lock");
@@ -18,19 +18,22 @@ const main = async () => {
     try {
       const content = await fs.readFile(filePath, "utf8");
       const uri = filePath.replace(deployPath, "");
-      console.log(`Processing file: ${filePath} to URI: ${uri}`);
-      console.log(`Content: ${content.length}`);
+      console.log(
+        `Processing file: ${filePath} len: ${content.length} to URI: ${uri}`
+      );
+
       const tx = await contract.setMapping(ethers.toUtf8Bytes(uri), content);
       console.log(
         `Transaction for ${uri} sent, waiting for confirmation ${tx.hash}`
       );
       await tx.wait();
       console.log(`Transaction for ${uri} completed`);
-      console.log(`web3 url is : https://${address}.80001.w3link.io${uri}`);
-      console.log("sleep 3 seconds ...");
+      console.log(
+        `web3 url is : https://${address}.80001.w3link.io${uri}. sleep 3 seconds ....`
+      );
       await new Promise((resolve, reject) => {
         setTimeout(() => {
-          console.log("next Transaction!");
+          console.log("do next Transaction!");
           resolve(true);
         }, 3000);
       });
